@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const { router } = require("./routes/mail-sender.route");
 require("dotenv").config();
 
 app.use(morgan("dev"));
@@ -13,9 +14,11 @@ app.use(
   })
 );
 
-app.use("/",(req,res)=>{
-    res.send('hello world!')
-})
+app.use(router);
+
+// app.use("/",(req,res)=>{
+//     res.send('hello world!')
+// })
 
 //port 
 const port = process.env.PORT
